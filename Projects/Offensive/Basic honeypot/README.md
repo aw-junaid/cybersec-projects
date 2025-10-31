@@ -1,3 +1,6 @@
+# Honeypot Project Overview
+
+```mermaid
 mindmap
   root((Honeypot Project))
     Overview
@@ -5,11 +8,10 @@ mindmap
         Learn & research
         Capture attack telemetry
         Deception (no execution)
-      KeyPrinciples
+      Key Principles
         Isolated lab only
         No remote code exec
         Log & analyze
-        ::icon(fa fa-shield-alt)
     Implementations
       Python
         socketserver Threaded
@@ -40,7 +42,7 @@ mindmap
       Ports & Banners
         SSH-like banner
         HTTP response banner
-      DataCapture
+      Data Capture
         Timestamp, IP, port
         Raw bytes hexdump
       Concurrency
@@ -54,12 +56,12 @@ mindmap
       Run
         Create listeners
         Loop: accept -> spawn handler
-      HandlerFlow
+      Handler Flow
         Log start
         Send banner
         Receive data until timeout/EOF/limit
         Log hexdump
-        Close -> rotate if needed
+        Close → rotate if needed
       Stop
         Graceful shutdown
     Usage
@@ -71,7 +73,7 @@ mindmap
       Testing
         nc / curl / nmap / telnet
         tail -f honeypot.log
-      ViewerUsage
+      Viewer Usage
         python3 -m http.server 8000
         open logs_viewer.html
     Security & Ethics
@@ -92,12 +94,12 @@ mindmap
       Hardening
         Rate limiting
         Access controls
-    NextSteps
+    Next Steps
       Add Flask API
       Add search/filter to viewer
       Add automated alerts
       Create deployment container (Docker)
-      Mermaid
+```
 
 
 ## How to Run
