@@ -1,3 +1,105 @@
+mindmap
+  root((Honeypot Project))
+    Overview
+      Purpose
+        Learn & research
+        Capture attack telemetry
+        Deception (no execution)
+      KeyPrinciples
+        Isolated lab only
+        No remote code exec
+        Log & analyze
+        ::icon(fa fa-shield-alt)
+    Implementations
+      Python
+        socketserver Threaded
+        hexdump logs
+        log rotation
+        quick to run
+      C
+        fork + pthreads
+        low-level sockets
+        hexdump logs
+        performant
+    Components
+      Listener
+        Bind sockets
+        Accept connections
+      Handler
+        Send banners
+        Read data (timeout)
+        Close socket
+      Logger
+        Hex + printable dump
+        Size-based rotation
+      Viewer
+        logviewer.js
+        logs_viewer.html
+        Optional: Flask JSON API
+    Features
+      Ports & Banners
+        SSH-like banner
+        HTTP response banner
+      DataCapture
+        Timestamp, IP, port
+        Raw bytes hexdump
+      Concurrency
+        Threads / pthreads
+      Limits
+        Max bytes
+        Read timeout
+    Algorithms
+      Init
+        Configure ports & banners
+      Run
+        Create listeners
+        Loop: accept -> spawn handler
+      HandlerFlow
+        Log start
+        Send banner
+        Receive data until timeout/EOF/limit
+        Log hexdump
+        Close -> rotate if needed
+      Stop
+        Graceful shutdown
+    Usage
+      Kali Setup
+        chmod +x honeypot.py
+        sudo ./honeypot.py
+        gcc honeypot_c.c -o honeypot_c
+        sudo ./honeypot_c
+      Testing
+        nc / curl / nmap / telnet
+        tail -f honeypot.log
+      ViewerUsage
+        python3 -m http.server 8000
+        open logs_viewer.html
+    Security & Ethics
+      Run in VM/container
+      Protect logs
+      Legal: authorized testing only
+      Prevent outbound traffic (iptables)
+    Enhancements
+      Analysis
+        geoip enrichment
+        parse & alert script
+      Integration
+        ELK / Splunk / SIEM
+        Flask JSON API for viewer
+      Realism
+        Fake login prompts (no exec)
+        Service emulation
+      Hardening
+        Rate limiting
+        Access controls
+    NextSteps
+      Add Flask API
+      Add search/filter to viewer
+      Add automated alerts
+      Create deployment container (Docker)
+      Mermaid
+
+
 ## How to Run
 
 ### Basic Usage:
