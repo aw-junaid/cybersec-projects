@@ -42,3 +42,6 @@
 ---
 
 # Table of Content
+
+## Offensive Projects
+- [Basic honeypot — set up to catch and log attackers.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Basic%20honeypo)
