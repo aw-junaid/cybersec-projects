@@ -14,6 +14,7 @@
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
+#include <sys/time.h>  // ADDED: for struct timeval
 #include <pthread.h>
 
 // ===== CONFIGURATION =====
@@ -131,7 +132,7 @@ void *conn_handler(void *arg) {
     struct timeval tv;
     tv.tv_sec = 8;
     tv.tv_usec = 0;
-    setsockopt(ci->fd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
+    setsockopt(ci->fd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof(tv));
 
     // Buffer for reading data
     unsigned char buf[BUFSIZE];
@@ -159,6 +160,7 @@ void *conn_handler(void *arg) {
     }
 
     // Log connection closure
+    now = time(NULL);  // Get current time for close timestamp
     fprintf(f, "time_closed: %s", asctime(gmtime(&now)));
     fprintf(f, "=== CONNECTION END ===\n\n");
     fclose(f);
@@ -215,7 +217,10 @@ int start_listener_thread(int port, const char *banner) {
     while (1) {
         // Allocate connection info structure
         struct conninfo *ci = malloc(sizeof(*ci));
-        if (!ci) continue;
+        if (!ci) {
+            perror("malloc");
+            continue;
+        }
         
         socklen_t len = sizeof(ci->addr);
         // Accept incoming connection
@@ -231,7 +236,12 @@ int start_listener_thread(int port, const char *banner) {
 
         // Create detached thread to handle connection
         pthread_t t;
-        pthread_create(&t, NULL, conn_handler, ci);
+        if (pthread_create(&t, NULL, conn_handler, ci) != 0) {
+            perror("pthread_create");
+            close(ci->fd);
+            free(ci);
+            continue;
+        }
         pthread_detach(t);  // Thread cleans up automatically when done
     }
     
@@ -252,27 +262,36 @@ int main(void) {
     
     int num_listeners = sizeof(listens)/sizeof(listens[0]);
     
+    printf("Starting C honeypot with %d listeners...\n", num_listeners);
+    
     // For simplicity run listeners in child processes (one per port)
     for (int i = 0; i < num_listeners; ++i) {
         pid_t pid = fork();
         if (pid == 0) {
             // child process: run listener
+            printf("Child process started for port %d\n", listens[i].port);
             start_listener_thread(listens[i].port, listens[i].banner);
             exit(0);  // Exit child process when listener stops
         } else if (pid < 0) {
             perror("fork");
+            fprintf(stderr, "Failed to fork for port %d\n", listens[i].port);
+        } else {
+            printf("Started listener for port %d (PID: %d)\n", listens[i].port, pid);
         }
     }
 
     // Parent process: wait indefinitely
-    printf("Honeypot (C) running. Logs -> %s\n", LOGFILE);
+    printf("\nHoneypot (C) running. Logs -> %s\n", LOGFILE);
     printf("Listening on ports: ");
     for (int i = 0; i < num_listeners; ++i) {
         printf("%d ", listens[i].port);
     }
     printf("\nPress Ctrl+C to stop\n");
     
-    while (1) sleep(60);  // Sleep forever (main process does nothing)
+    // Parent process just waits
+    while (1) {
+        sleep(60);
+    }
     
     return 0;
 }
