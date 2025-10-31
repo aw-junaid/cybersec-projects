@@ -1,5 +1,5 @@
 # Cyber Security Projects
-<img align = "" src="https://github.com/aw-junaid/aw-junaid/blob/main/Assets/asset1.webp" width="1000" height="250" alt="awjunaid">
+<img align = "" src="https://github.com/aw-junaid/aw-junaid/blob/main/Assets/hacking.gif" width="1000" height="250" alt="awjunaid">
  
 ![GitHub contributors](https://img.shields.io/github/contributors/aw-junaid/cybersec-projects)
 ![GitHub followers](https://img.shields.io/github/followers/aw-junaid)
