@@ -45,3 +45,4 @@
 
 ## Offensive Projects
 - [Basic honeypot — set up to catch and log attackers.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Basic%20honeypo)
+- [Simple password cracker — dictionary/brute-force for learning](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Simple%20password%20cracker)
