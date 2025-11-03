@@ -47,3 +47,4 @@
 - [Basic honeypot — set up to catch and log attackers.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Basic%20honeypo)
 - [Simple password cracker — dictionary/brute-force for learning](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Simple%20password%20cracker)
 - [Sniff network traffic tool — capture and analyze packets.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Sniff%20network%20traffic)
+- [Basic keylogger (lab-only) — learn keystroke capture mechanics.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Basic%20keylogger)
