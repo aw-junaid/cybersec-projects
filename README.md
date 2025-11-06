@@ -49,3 +49,7 @@
 - [Sniff network traffic tool — capture and analyze packets.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Sniff%20network%20traffic)
 - [Basic keylogger (lab-only) — learn keystroke capture mechanics.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Basic%20keylogger)
 - [Phishing campaign simulator — create a safe training simulation.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Phishing%20campaign%20simulator)
+- [Wi-Fi security tester — evaluate home Wi-Fi weaknesses.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Wi-Fi%20security%20tester)
+- [Network vulnerability scanner — scan for open ports/services.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Network%20vulnerability%20scanner)
+- [Password cracking with GPUs — accelerate cracking using GPU.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Password%20cracking%20with%20GPUs)
+
