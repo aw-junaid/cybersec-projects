@@ -52,4 +52,5 @@
 - [Wi-Fi security tester — evaluate home Wi-Fi weaknesses.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Wi-Fi%20security%20tester)
 - [Network vulnerability scanner — scan for open ports/services.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Network%20vulnerability%20scanner)
 - [Password cracking with GPUs — accelerate cracking using GPU.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Password%20cracking%20with%20GPUs)
+- [Browser extension for security testing — inject/scan pages.](https://github.com/aw-junaid/cybersecprojects/tree/main/Projects/Offensive/Browser%20extension%20for%20security%20testing)
 
