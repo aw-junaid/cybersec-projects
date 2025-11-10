@@ -54,4 +54,5 @@
 - [Password cracking with GPUs — accelerate cracking using GPU.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Password%20cracking%20with%20GPUs)
 - [Browser extension for security testing — inject/scan pages.](https://github.com/aw-junaid/cybersecprojects/tree/main/Projects/Offensive/Browser%20extension%20for%20security%20testing)
 - [Subdomain enumeration tool — brute-force and DNS discovery.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Subdomain%20enumeration%20tool)
+- [Directory brute-force tool — automated wordlist-based discovery.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Directory%20brute-force%20tool)
 
