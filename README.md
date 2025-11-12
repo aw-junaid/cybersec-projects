@@ -56,3 +56,4 @@
 - [Subdomain enumeration tool — brute-force and DNS discovery.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Subdomain%20enumeration%20tool)
 - [Directory brute-force tool — automated wordlist-based discovery.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Directory%20brute-force%20tool)
 - [XSS finder — detect reflected/stored cross-site scripting.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/XSS%20finder)
+- [SQLi tester — detect and exploit injection vectors safely.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/SQLi%20tester)
