@@ -67,3 +67,6 @@
 - [Kernel backdoor detector/creator (lab) — study kernel persistence.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Kernel%20backdoor)
 - [Steganography encoder/decoder — hide data in images/audio.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Steganography%20encoder)
 - [DNS spoofing simulator — practice detection/attack methods.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/DNS%20spoofing%20simulator)
+- [ARP spoof/mitm tool (lab) — learn MITM traffic interception.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/ARP%20spoof-mitm%20tool)
+- [Packet injection tool — craft & send custom packets.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Packet%20injection%20tool)
+- [Create custom payloads — modular payload generator.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Create%20custom%20payloads)
