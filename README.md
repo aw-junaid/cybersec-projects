@@ -70,3 +70,10 @@
 - [ARP spoof/mitm tool (lab) — learn MITM traffic interception.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/ARP%20spoof-mitm%20tool)
 - [Packet injection tool — craft & send custom packets.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Packet%20injection%20tool)
 - [Create custom payloads — modular payload generator.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Create%20custom%20payloads)
+- [Firmware reverse-engineering — find flaws in embedded firmware.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Firmware%20reverse-engineering)
+- [IoT device fuzzing tool — fuzz protocols for IoT devices.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/IoT%20device%20fuzzing%20tool)
+- [Bluetooth protocol tester — scan/exploit Bluetooth services.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Bluetooth%20Protocol%20Tester)
+- [Mobile app vulnerability scanner — static/dynamic tests for apps.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Mobile%20app%20vulnerability%20scanner)
+- [Web app crawler + vuln correlator — find attack paths.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Web%20app%20crawler%20+%20vuln%20correlator)
+- [Automated vulnerability scanner integration — orchestrate multiple scanners.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Automated%20vulnerability%20scanner%20integration)
+- Social engineering toolkit — email/SMS template simulator for testing.
