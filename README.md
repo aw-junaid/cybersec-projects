@@ -76,4 +76,4 @@
 - [Mobile app vulnerability scanner — static/dynamic tests for apps.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Mobile%20app%20vulnerability%20scanner)
 - [Web app crawler + vuln correlator — find attack paths.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Web%20app%20crawler%20+%20vuln%20correlator)
 - [Automated vulnerability scanner integration — orchestrate multiple scanners.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Automated%20vulnerability%20scanner%20integration)
-- Social engineering toolkit — email/SMS template simulator for testing.
+- [Social engineering toolkit — email/SMS template simulator for testing.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Social%20engineering%20toolkit)
