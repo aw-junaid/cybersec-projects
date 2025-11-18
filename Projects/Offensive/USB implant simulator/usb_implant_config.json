@@ -1,0 +1,30 @@
+{
+  "simulation": {
+    "max_duration": 300,
+    "safe_mode": true,
+    "require_confirmation": true,
+    "log_all_actions": true,
+    "simulation_speed": "normal"
+  },
+  "behavior": {
+    "keyboard_delay": 0.1,
+    "max_keystrokes": 100,
+    "file_operations": true,
+    "network_operations": true,
+    "registry_operations": false,
+    "gui_automation": true
+  },
+  "safety": {
+    "whitelisted_processes": ["notepad.exe", "calc.exe", "cmd.exe", "powershell.exe"],
+    "blocked_commands": ["format", "del", "rm -rf", "shutdown", "taskkill"],
+    "allowed_directories": ["/tmp", "C:\\Temp", "/var/tmp"],
+    "max_file_size": 1048576,
+    "network_whitelist": ["localhost", "127.0.0.1", "::1"]
+  },
+  "monitoring": {
+    "log_process_creation": true,
+    "log_network_connections": true,
+    "log_file_operations": true,
+    "log_registry_changes": false
+  }
+}
