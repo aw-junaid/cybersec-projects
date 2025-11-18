@@ -1,0 +1,46 @@
+{
+  "sources": {
+    "paste_sites": [
+      "https://pastebin.com",
+      "https://rentry.co",
+      "https://ghostbin.com"
+    ],
+    "forums": [
+      "https://example-forum.onion"
+    ],
+    "telegram_channels": [
+      "@threat_intel",
+      "@malware_analysis"
+    ],
+    "twitter_accounts": [
+      "@threatintel",
+      "@malware_traffic"
+    ]
+  },
+  "scraping": {
+    "delay_between_requests": 3,
+    "max_pages_per_source": 50,
+    "user_agents": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+    ],
+    "timeout": 30
+  },
+  "analysis": {
+    "extract_iocs": true,
+    "extract_cves": true,
+    "confidence_threshold": 0.3,
+    "ioc_types": ["ip", "domain", "hash", "url", "email", "cve"]
+  },
+  "security": {
+    "use_tor": false,
+    "tor_proxy": "socks5://127.0.0.1:9050",
+    "rate_limiting": true,
+    "max_requests_per_minute": 30
+  },
+  "api_keys": {
+    "virustotal": "YOUR_VIRUSTOTAL_API_KEY",
+    "abuseipdb": "YOUR_ABUSEIPDB_API_KEY",
+    "shodan": "YOUR_SHODAN_API_KEY"
+  }
+}
