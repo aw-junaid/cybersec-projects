@@ -77,3 +77,7 @@
 - [Web app crawler + vuln correlator — find attack paths.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Web%20app%20crawler%20+%20vuln%20correlator)
 - [Automated vulnerability scanner integration — orchestrate multiple scanners.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Automated%20vulnerability%20scanner%20integration)
 - [Social engineering toolkit — email/SMS template simulator for testing.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Social%20engineering%20toolkit)
+- [Dark web scraper (research) — aggregate threat intel data.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Dark%20web%20scraper)
+- [USB implant simulator — emulate malicious USB behaviors in lab.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/USB%20implant%20simulator)
+- [Binary reverse-engineering exercises — unpack and analyze binaries.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Binary%20reverse-engineering)
+- [Password spraying automation — test credential reuse patterns.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Password%20spraying%20automation)
