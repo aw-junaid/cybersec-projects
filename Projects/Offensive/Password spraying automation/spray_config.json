@@ -1,0 +1,42 @@
+{
+  "spraying": {
+    "delay_between_sprays": 60,
+    "max_attempts_per_password": 100,
+    "lockout_threshold": 10,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "timeout": 30,
+    "max_retries": 3
+  },
+  "safety": {
+    "safe_mode": true,
+    "require_confirmation": true,
+    "max_threads": 5,
+    "test_mode": false,
+    "whitelist_ips": ["192.168.1.100"],
+    "blacklist_services": []
+  },
+  "reporting": {
+    "generate_reports": true,
+    "save_credentials": false,
+    "alert_on_success": true,
+    "log_level": "INFO",
+    "output_directory": "./reports"
+  },
+  "services": {
+    "owa_exchange": {
+      "enabled": true,
+      "target_url": "https://outlook.office.com",
+      "auth_endpoint": "/owa/auth.owa"
+    },
+    "adfs": {
+      "enabled": true,
+      "target_url": "https://sts.company.com",
+      "auth_endpoint": "/adfs/ls/idpinitiatedsignon.aspx"
+    },
+    "vpn": {
+      "enabled": true,
+      "target_url": "https://vpn.company.com",
+      "auth_endpoint": "/global-protect/login.esp"
+    }
+  }
+}
