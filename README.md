@@ -81,3 +81,5 @@
 - [USB implant simulator — emulate malicious USB behaviors in lab.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/USB%20implant%20simulator)
 - [Binary reverse-engineering exercises — unpack and analyze binaries.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Binary%20reverse-engineering)
 - [Password spraying automation — test credential reuse patterns.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Password%20spraying%20automation)
+- [Credential dump analyzer — parse and make sense of leaks.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Credential%20dump%20analyzer)
+- 
