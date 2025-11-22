@@ -83,5 +83,9 @@
 - [Password spraying automation — test credential reuse patterns.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Password%20spraying%20automation)
 - [Credential dump analyzer — parse and make sense of leaks.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Credential%20dump%20analyzer)
 - [Side-channel attack experiments — timing/power analysis study.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Side-channel%20attack)
+- [TLS downgrade & MITM tester — examine TLS weaknesses.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/TLS%20downgrade)
+- [Smart contract audit tools (offensive POV) — detect vulnerabilities.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Smart%20contract%20audit)
+- [Blockchain pentest harness — test contract functions and flows.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Blockchain%20pentest%20harness)
+- [Hardware fault injection lab — observe failure-mode vulnerabilities.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Hardware%20fault%20injection%20lab)
 - 
 
