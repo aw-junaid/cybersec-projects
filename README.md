@@ -94,4 +94,9 @@
 - [Automate phishing page builder — fast lab-only templates.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Automate%20phishing%20page%20builder)
 - [ROP chain builder helper — create return-oriented payloads.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/ROP%20chain%20builder%20helper)
 - [Binary instrumentation toolkit — hook and manipulate processes.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Binary%20instrumentation%20toolkit)
-- 
+- [Vulnerability PoC repository — catalog proof-of-concepts.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Vulnerability%20PoC%20repository)
+- [Network pivoting lab scripts — simulate lateral movement.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Network%20pivoting%20lab)
+- [Log evasion simulator — study evasion techniques in safe env.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Log%20evasion%20simulator)
+- [Exploit chaining workflow — automate multi-step exploit sequences.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Exploit%20chaining%20workflow)
+- [Password manager attack simulations — test vault export/weaknesses.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Password%20manager%20attack)
+- [IDS/IPS bypass tests — craft payloads to evade detection.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/IDS)
