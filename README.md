@@ -87,5 +87,11 @@
 - [Smart contract audit tools (offensive POV) — detect vulnerabilities.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Smart%20contract%20audit)
 - [Blockchain pentest harness — test contract functions and flows.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Blockchain%20pentest%20harness)
 - [Hardware fault injection lab — observe failure-mode vulnerabilities.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Hardware%20fault%20injection%20lab)
+- [Cloud misconfiguration exploit scripts — target insecure cloud setups.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Cloud%20misconfiguration%20exploit)
+- [API abuse/fuzzing tool — test REST/GraphQL abuse cases.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/API%20abuse)
+- [Web sockets pentest tool — test real-time channels for issues.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Web%20sockets%20pentest%20tool)
+- [CSRF exploit demo kit — craft chained CSRF attacks for training.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/CSRF%20exploit%20demo%20kit)
+- [Automate phishing page builder — fast lab-only templates.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Automate%20phishing%20page%20builder)
+- [ROP chain builder helper — create return-oriented payloads.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/ROP%20chain%20builder%20helper)
+- [Binary instrumentation toolkit — hook and manipulate processes.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Binary%20instrumentation%20toolkit)
 - 
-
