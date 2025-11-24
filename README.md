@@ -100,3 +100,4 @@
 - [Exploit chaining workflow — automate multi-step exploit sequences.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Exploit%20chaining%20workflow)
 - [Password manager attack simulations — test vault export/weaknesses.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Password%20manager%20attack)
 - [IDS/IPS bypass tests — craft payloads to evade detection.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/IDS)
+- [Wireless protocol fuzzing — test Zigbee/LoRa/802.11 frames.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Wireless%20protocol%20fuzzing)
