@@ -101,3 +101,14 @@
 - [Password manager attack simulations — test vault export/weaknesses.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Password%20manager%20attack)
 - [IDS/IPS bypass tests — craft payloads to evade detection.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/IDS)
 - [Wireless protocol fuzzing — test Zigbee/LoRa/802.11 frames.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Wireless%20protocol%20fuzzing)
+- [C2 (command & control) mini framework — lab C2 functionality.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/C2)
+- [Obfuscation & packer research toolkit — study packer effects.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Obfuscation)
+- [Red/Blue exercise scenarios generator — create realistic engagements.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Red)
+
+# Defensive Projects
+- [Digital forensic analysis lab — capture & analyze forensic artifacts.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Digital%20forensic%20analysis%20lab)
+- [Basic malware analysis sandbox — run and observe malware safely.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Basic%20malware%20analysis)
+- [TLS setup & hardening guide — secure communication configs.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/TLS%20setup)
+- [Two-factor authentication demo implementation — test flows & bypasses.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Two-factor%20authentication)
+- [Snort/Suricata IDS setup — basic intrusion detection deployment.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Snort)
+- [Configure firewall rule automation — templates & testing scripts.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Configure%20firewall)
