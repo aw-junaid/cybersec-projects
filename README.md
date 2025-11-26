@@ -112,3 +112,7 @@
 - [Two-factor authentication demo implementation — test flows & bypasses.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Two-factor%20authentication)
 - [Snort/Suricata IDS setup — basic intrusion detection deployment.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Snort)
 - [Configure firewall rule automation — templates & testing scripts.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Configure%20firewall)
+- [Host-based monitoring scripts — file/integrity/process watchers.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Host-based%20monitoring)
+- [Forensic timeline builder — correlate artifacts into timelines.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Forensic%20timeline%20builder)
+- [Malware behavior analyzer — behavioral IOC extractor.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Malware%20behavior%20analyzer)
+- [Full-disk encryption demo & key management — best practices.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Full-disk%20encryption)
