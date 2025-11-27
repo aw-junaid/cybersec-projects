@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  log-aggregator:
+    build: .
+    ports:
+      - "8000:8000"  # REST API
+      - "514:514/udp"  # Syslog UDP
+      - "1514:1514"  # Syslog TCP
+      - "8080:8080"  # HTTP collector
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - REDIS_URL=redis://redis:6379
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./logs:/app/logs:ro
+      - ./data:/app/data
+    depends_on:
+      - elasticsearch
+      - redis
+    restart: unless-stopped
+
+  elasticsearch:
+    image: elasticsearch:8.11.0
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    restart: unless-stopped
+
+  kibana:
+    image: kibana:8.11.0
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+  log-generator:
+    image: alpine:latest
+    command: |
+      sh -c "
+      apk add --no-cache curl &&
+      while true; do
+        echo '\$(date -Iseconds) - INFO - Sample log message from generator' >> /logs/app.log
+        echo '{\"timestamp\": \"\$(date -Iseconds)\", \"level\": \"INFO\", \"message\": \"JSON log message\", \"source\": \"generator\"}' >> /logs/app.json
+        sleep 5
+      done"
+    volumes:
+      - ./sample_logs:/logs
+    restart: unless-stopped
+
+volumes:
+  es_data:
+  redis_data:
