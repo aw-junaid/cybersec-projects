@@ -116,3 +116,11 @@
 - [Forensic timeline builder — correlate artifacts into timelines.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Forensic%20timeline%20builder)
 - [Malware behavior analyzer — behavioral IOC extractor.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Malware%20behavior%20analyzer)
 - [Full-disk encryption demo & key management — best practices.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Full-disk%20encryption)
+- [Rootkit detection & removal toolkit — heuristics and scanners.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Rootkit%20detection)
+- [Secure web application template — hardened starter app](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/secure-webapp)
+- [Secure API authentication examples — JWT/OAuth best practices.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/secure-api-auth)
+- [SIEM dashboard for logs — ingest and visualize security events.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/siem-dashboard)
+- [Threat detection using ML — anomaly detection prototype.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/ml-threat-detection)
+- [Log aggregation & parser tools — normalize and search logs.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/log-aggregator)
+- [Vulnerability management dashboard — track findings lifecycle.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Vulnerability%20management%20dashboard)
+- 
