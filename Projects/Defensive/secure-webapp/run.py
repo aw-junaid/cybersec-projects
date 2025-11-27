@@ -1,0 +1,11 @@
+from app import create_app
+
+app = create_app()
+
+if __name__ == '__main__':
+    # In production, use a proper WSGI server like Gunicorn
+    app.run(
+        host='0.0.0.0',
+        port=5000,
+        debug=False  # Always False in production
+    )
