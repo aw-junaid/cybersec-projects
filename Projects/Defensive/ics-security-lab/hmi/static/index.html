@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICS Security Lab - HMI Dashboard</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .safety-banner {
+            background: #ffebee;
+            color: #c62828;
+            padding: 10px;
+            border-left: 4px solid #c62828;
+            margin-bottom: 20px;
+        }
+        .panel {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .metric {
+            display: inline-block;
+            padding: 10px;
+            margin: 5px;
+            background: #e3f2fd;
+            border-radius: 3px;
+        }
+        .critical { background: #ffebee; color: #c62828; }
+        .warning { background: #fff3e0; color: #ef6c00; }
+        .normal { background: #e8f5e8; color: #2e7d32; }
+    </style>
+</head>
+<body>
+    <div class="safety-banner">
+        <strong>SAFETY NOTICE:</strong> This is a lab simulation. Never connect to real ICS systems.
+    </div>
+
+    <h1>ICS Security Lab - HMI Dashboard</h1>
+    
+    <div class="panel">
+        <h2>PLC Simulator 1 (172.20.0.10)</h2>
+        <div class="metric normal">Temperature: <span id="plc1-temp">--</span>°C</div>
+        <div class="metric normal">Pressure: <span id="plc1-pressure">--</span> kPa</div>
+        <div class="metric normal">Flow Rate: <span id="plc1-flow">--</span> L/min</div>
+    </div>
+
+    <div class="panel">
+        <h2>PLC Simulator 2 (172.20.0.11)</h2>
+        <div class="metric normal">Temperature: <span id="plc2-temp">--</span>°C</div>
+        <div class="metric normal">Pressure: <span id="plc2-pressure">--</span> kPa</div>
+        <div class="metric warning">Motor Status: <span id="plc2-motor">STOPPED</span></div>
+    </div>
+
+    <div class="panel">
+        <h2>Security Events</h2>
+        <div id="security-events">
+            <div class="metric normal">No security events detected</div>
+        </div>
+    </div>
+
+    <script>
+        // Mock data updates for demo
+        function updateMetrics() {
+            // PLC 1 metrics
+            document.getElementById('plc1-temp').textContent = 
+                Math.floor(Math.random() * 100);
+            document.getElementById('plc1-pressure').textContent = 
+                Math.floor(Math.random() * 500);
+            document.getElementById('plc1-flow').textContent = 
+                Math.floor(Math.random() * 1000);
+            
+            // PLC 2 metrics  
+            document.getElementById('plc2-temp').textContent = 
+                Math.floor(Math.random() * 100);
+            document.getElementById('plc2-pressure').textContent = 
+                Math.floor(Math.random() * 500);
+            
+            // Simulate occasional security events
+            if (Math.random() < 0.1) {
+                document.getElementById('security-events').innerHTML = 
+                    '<div class="metric warning">Unusual write operation detected</div>';
+            }
+        }
+        
+        setInterval(updateMetrics, 2000);
+        updateMetrics();
+    </script>
+</body>
+</html>
