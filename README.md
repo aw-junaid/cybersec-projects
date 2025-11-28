@@ -123,4 +123,7 @@
 - [Threat detection using ML — anomaly detection prototype.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/ml-threat-detection)
 - [Log aggregation & parser tools — normalize and search logs.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/log-aggregator)
 - [Vulnerability management dashboard — track findings lifecycle.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Vulnerability%20management%20dashboard)
-- Cloud security posture tool — detect misconfigs and risky perms.
+- [Cloud security posture tool — detect misconfigs and risky perms.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/cloud-cspm)
+- [Container security hardening scripts — scan and enforce images.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/container-security-suite)
+- [Microservices security checklist & tests — secure interservice comms.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/microservices-security)
+- [SCADA/ICS security study lab — emulate industrial protocols safely.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/ics-security-lab)
