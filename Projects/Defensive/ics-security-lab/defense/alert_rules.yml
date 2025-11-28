@@ -1,0 +1,21 @@
+groups:
+  - name: ics_security
+    rules:
+      - alert: HighWriteRate
+        expr: rate(modbus_writes_total[5m]) > 10
+        for: 1m
+        labels:
+          severity: medium
+          category: ics
+        annotations:
+          summary: "High rate of write operations detected"
+          description: "Write operations exceeding 10 per minute"
+      
+      - alert: UnsafeWriteAttempt
+        expr: modbus_unsafe_write_attempts > 0
+        labels:
+          severity: high  
+          category: ics
+        annotations:
+          summary: "Unsafe write attempt detected"
+          description: "Attempt to write outside safe value ranges"
