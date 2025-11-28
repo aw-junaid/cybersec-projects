@@ -1,0 +1,14 @@
+scanner:
+  trivy:
+    server_url: ""
+    timeout_seconds: 300
+  policies:
+    fail_threshold: 50
+    warn_threshold: 20
+    blocked_registries:
+      - "untrusted.io"
+    required_labels:
+      - "security.scan"
+  signing:
+    required: true
+    keyless_enabled: false
