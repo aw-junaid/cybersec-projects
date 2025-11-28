@@ -1,0 +1,47 @@
+name: ICS Lab CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-lab:
+    runs-on: ubuntu-latest
+    
+    services:
+      docker:
+        image: docker:dind
+        options: --privileged
+        
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Build Docker images
+      run: |
+        docker build -t ics-lab/modbus-sim simulators/modbus_sim/
+        docker build -t ics-lab/attacker attacks/
+        
+    - name: Run safety checks
+      run: |
+        python scripts/safety/check_isolated.py
+        echo "LAB_MODE=1" >> $GITHUB_ENV
+        
+    - name: Start lab environment
+      run: |
+        cd lab
+        docker-compose up -d
+        sleep 30  # Wait for services to start
+        
+    - name: Run tests
+      run: |
+        cd tests
+        python test_harness.py
+        
+    - name: Tear down lab
+      if: always()
+      run: |
+        cd lab
+        docker-compose down
+        docker network prune -f
