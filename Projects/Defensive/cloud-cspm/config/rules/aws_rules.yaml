@@ -1,0 +1,35 @@
+rules:
+  s3_public_bucket:
+    name: "S3 Public Bucket"
+    description: "S3 bucket with public access"
+    severity: "HIGH"
+    category: "Storage"
+    condition: |
+      bucket.policy has Principal = '*' and 
+      bucket.policy has Action includes ['s3:GetObject', 's3:PutObject']
+    
+  security_group_open_ssh:
+    name: "Open SSH Security Group"
+    description: "Security group allows SSH from anywhere"
+    severity: "HIGH" 
+    category: "Network"
+    condition: |
+      sg.ip_permissions has FromPort = 22 and
+      sg.ip_permissions has IpRanges includes '0.0.0.0/0'
+    
+  iam_admin_privileges:
+    name: "IAM Admin Privileges"
+    description: "IAM policy with administrator access"
+    severity: "HIGH"
+    category: "IAM"
+    condition: |
+      policy.Statement has Effect = 'Allow' and
+      policy.Statement has Action = '*' and
+      policy.Statement has Resource = '*'
+    
+  no_mfa:
+    name: "No MFA"
+    description: "IAM user without multi-factor authentication"
+    severity: "MEDIUM"
+    category: "IAM"
+    condition: "user.mfa_devices is empty"
