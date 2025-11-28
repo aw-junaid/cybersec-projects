@@ -1,0 +1,116 @@
+name: Container Security Scan
+
+on:
+  push:
+    branches: [ main, develop ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      
+    - name: Build container image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./Dockerfile
+        push: false
+        tags: ${{ env.IMAGE_NAME }}:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: ${{ env.IMAGE_NAME }}:latest
+        format: sarif
+        output: trivy-results.sarif
+        severity: CRITICAL,HIGH
+        
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v3
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
+        
+    - name: Generate SBOM
+      run: |
+        trivy image --format cyclonedx ${{ env.IMAGE_NAME }}:latest > sbom.json
+        echo "SBOM generated with $(jq '.components | length' sbom.json) components"
+        
+    - name: Upload SBOM artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: sbom
+        path: sbom.json
+        retention-days: 30
+        
+    - name: Check for critical vulnerabilities
+      run: |
+        CRITICAL_COUNT=$(trivy image --severity CRITICAL --format json ${{ env.IMAGE_NAME }}:latest | jq '.Results[].Vulnerabilities | length')
+        if [ "$CRITICAL_COUNT" -gt 0 ]; then
+          echo "❌ Found $CRITICAL_COUNT critical vulnerabilities - failing build"
+          exit 1
+        fi
+        
+  sign-image:
+    name: Sign Container Image
+    runs-on: ubuntu-latest
+    needs: security-scan
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/'))
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Cosign
+      uses: sigstore/cosign-installer@v3
+      
+    - name: Log into registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Sign container image
+      env:
+        COSIGN_EXPERIMENTAL: true
+      run: |
+        cosign sign --yes ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+        
+  policy-check:
+    name: Policy Compliance Check
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Run Conftest policy check
+      uses: instrumenta/conftest-action@v0.1.0
+      with:
+        files: k8s/manifests/
+        policy: k8s/policies/
+        
+    - name: Check Dockerfile security
+      run: |
+        # Check for security anti-patterns in Dockerfile
+        if grep -E "^(RUN.*curl.*\|.*sh|USER.*root|COPY.*\.\..*|ADD.*http)" Dockerfile; then
+          echo "❌ Dockerfile contains security anti-patterns"
+          exit 1
+        fi
