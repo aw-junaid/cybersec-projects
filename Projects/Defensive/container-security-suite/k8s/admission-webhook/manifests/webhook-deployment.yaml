@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admission-webhook
+  namespace: container-security
+  labels:
+    app: admission-webhook
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: admission-webhook
+  template:
+    metadata:
+      labels:
+        app: admission-webhook
+    spec:
+      containers:
+      - name: webhook
+        image: container-security/admission-webhook:latest
+        ports:
+        - containerPort: 8443
+        env:
+        - name: FAIL_THRESHOLD
+          value: "50"
+        - name: REQUIRED_LABELS
+          value: "security.scan,approved"
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8443
+            scheme: HTTPS
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8443
+            scheme: HTTPS
+          initialDelaySeconds: 5
+          periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admission-webhook
+  namespace: container-security
+spec:
+  ports:
+  - port: 443
+    targetPort: 8443
+  selector:
+    app: admission-webhook
