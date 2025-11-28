@@ -123,4 +123,4 @@
 - [Threat detection using ML — anomaly detection prototype.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/ml-threat-detection)
 - [Log aggregation & parser tools — normalize and search logs.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/log-aggregator)
 - [Vulnerability management dashboard — track findings lifecycle.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Vulnerability%20management%20dashboard)
-- 
+- Cloud security posture tool — detect misconfigs and risky perms.
