@@ -1,0 +1,52 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-image-signatures
+  annotations:
+    policies.kyverno.io/title: Require Image Signatures
+    policies.kyverno.io/category: Container Security
+    policies.kyverno.io/severity: medium
+spec:
+  validationFailureAction: enforce
+  background: false
+  rules:
+  - name: verify-image-signature
+    match:
+      resources:
+        kinds:
+        - Pod
+    validate:
+      message: "All container images must be signed"
+      pattern:
+        spec:
+          containers:
+          - image: "registry.k8s.io/* | docker.io/library/*"
+          - =(image): "!*untrusted.io/*"
+---
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: set-security-context
+  annotations:
+    policies.kyverno.io/title: Set Security Context
+    policies.kyverno.io/category: Container Security
+spec:
+  background: false
+  rules:
+  - name: set-run-as-non-root
+    match:
+      resources:
+        kinds:
+        - Pod
+    mutate:
+      patchStrategicMerge:
+        spec:
+          securityContext:
+            runAsNonRoot: true
+          containers:
+          - (name): "*"
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                - ALL
