@@ -1,0 +1,31 @@
+{
+  "dashboard": {
+    "title": "ICS Security Lab Dashboard",
+    "panels": [
+      {
+        "title": "Modbus Request Rate",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "rate(modbus_requests_total[5m])",
+            "legendFormat": "{{function_code}}"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0}
+      },
+      {
+        "title": "Unsafe Write Attempts",
+        "type": "graph", 
+        "targets": [
+          {
+            "expr": "modbus_unsafe_write_attempts",
+            "legendFormat": "Unsafe Writes"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0}
+      }
+    ],
+    "tags": ["ics", "security", "lab"],
+    "timezone": "browser"
+  }
+}
