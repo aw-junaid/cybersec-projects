@@ -1,0 +1,28 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+# Safety: Only scrape lab networks
+scrape_configs:
+  - job_name: 'modbus_simulators'
+    static_configs:
+      - targets: 
+        - '172.20.0.10:8080'
+        - '172.20.0.11:8080'
+    metrics_path: /metrics
+    scrape_interval: 10s
+    
+  - job_name: 'opcua_simulator'
+    static_configs:
+      - targets: ['172.20.0.12:8081']
+    
+  - job_name: 'hmi_dashboard'
+    static_configs:
+      - targets: ['172.20.0.14:8082']
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+rule_files: []
