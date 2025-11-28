@@ -1,0 +1,72 @@
+apiVersion: templates.gatekeeper.sh/v1beta1
+kind: ConstraintTemplate
+metadata:
+  name: k8srequiredregistry
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sRequiredRegistry
+      validation:
+        openAPIV3Schema:
+          type: object
+          properties:
+            allowedRegistries:
+              type: array
+              items:
+                type: string
+            blockedRegistries:
+              type: array
+              items:
+                type: string
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8srequiredregistry
+
+        violation[{"msg": msg}] {
+            container := input.review.object.spec.containers[_]
+            image := container.image
+            not allowed_registry(image)
+            msg := sprintf("Image registry not allowed: %v", [image])
+        }
+
+        violation[{"msg": msg}] {
+            container := input.review.object.spec.containers[_]
+            image := container.image
+            blocked_registry(image)
+            msg := sprintf("Image registry blocked: %v", [image])
+        }
+
+        allowed_registry(image) {
+            startswith(image, "docker.io/")
+        }
+
+        allowed_registry(image) {
+            startswith(image, "gcr.io/")
+        }
+
+        allowed_registry(image) {
+            startswith(image, "registry.k8s.io/")
+        }
+
+        blocked_registry(image) {
+            startswith(image, "untrusted.io/")
+        }
+---
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequiredRegistry
+metadata:
+  name: require-approved-registries
+spec:
+  match:
+    kinds:
+    - apiGroups: [""]
+      kinds: ["Pod"]
+  parameters:
+    allowedRegistries:
+      - "docker.io/"
+      - "gcr.io/"
+      - "registry.k8s.io/"
+    blockedRegistries:
+      - "untrusted.io/"
