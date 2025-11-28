@@ -1,0 +1,35 @@
+# ICS IDS Signatures for Lab Environment
+# These are example rules for training purposes
+
+rules:
+  - id: "ICS-001"
+    name: "Modbus Unauthorized Write Attempt"
+    description: "Write operation to protected register range"
+    protocol: "modbus"
+    condition: "function_code in [5, 6, 15, 16] and start_address >= 100"
+    severity: "high"
+    action: "alert"
+    
+  - id: "ICS-002" 
+    name: "Modbus Function Code Fuzzing"
+    description: "Unusual Modbus function code attempted"
+    protocol: "modbus"
+    condition: "function_code not in [1, 2, 3, 4, 5, 6, 15, 16]"
+    severity: "medium"
+    action: "alert"
+    
+  - id: "ICS-003"
+    name: "Rapid Sequential Writes"
+    description: "Multiple write operations in short time window"
+    protocol: "modbus"
+    condition: "count(write_operations) > 10 within 5s"
+    severity: "medium"
+    action: "alert"
+    
+  - id: "ICS-004"
+    name: "Unit ID Enumeration"
+    description: "Multiple unit ID probes from single source"
+    protocol: "modbus"
+    condition: "count(unit_id_probes) > 5 within 10s"
+    severity: "low"
+    action: "alert"
