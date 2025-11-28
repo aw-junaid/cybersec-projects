@@ -1,0 +1,22 @@
+cis_aws_foundations_benchmark:
+  version: "1.4"
+  controls:
+    cis_1_1:
+      name: "Avoid the use of the root account"
+      description: "The root account has unrestricted access to all resources in the AWS account."
+      severity: "HIGH"
+      
+    cis_1_2:
+      name: "Ensure MFA is enabled for all IAM users"
+      description: "Multi-factor authentication adds an extra layer of protection on top of a user name and password."
+      severity: "HIGH"
+      
+    cis_1_3:
+      name: "Ensure credentials unused for 90 days or greater are disabled"
+      description: "Disable access keys that have not been used in 90 days."
+      severity: "MEDIUM"
+      
+    cis_2_1:
+      name: "Ensure CloudTrail is enabled in all regions"
+      description: "AWS CloudTrail is a web service that records AWS API calls for your account."
+      severity: "MEDIUM"
