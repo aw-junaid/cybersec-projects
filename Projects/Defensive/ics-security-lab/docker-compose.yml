@@ -1,0 +1,115 @@
+version: '3.8'
+
+networks:
+  ics-lab:
+    driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+
+services:
+  # Modbus PLC Simulators
+  modbus-plc-1:
+    build: ../simulators/modbus_sim
+    container_name: modbus-plc-1
+    networks:
+      ics-lab:
+        ipv4_address: 172.20.0.10
+    environment:
+      - LAB_MODE=1
+      - PLC_ID=1
+      - CONFIG_PATH=/app/config/plc1.yaml
+    volumes:
+      - ../simulators/modbus_sim/config:/app/config:ro
+    ports: []
+
+  modbus-plc-2:
+    build: ../simulators/modbus_sim
+    container_name: modbus-plc-2  
+    networks:
+      ics-lab:
+        ipv4_address: 172.20.0.11
+    environment:
+      - LAB_MODE=1
+      - PLC_ID=2
+      - CONFIG_PATH=/app/config/plc2.yaml
+    volumes:
+      - ../simulators/modbus_sim/config:/app/config:ro
+    ports: []
+
+  # OPC UA Simulator
+  opcua-sim:
+    build: ../simulators/opcua_sim
+    container_name: opcua-sim
+    networks:
+      ics-lab:
+        ipv4_address: 172.20.0.12
+    environment:
+      - LAB_MODE=1
+    ports: []
+
+  # MQTT Broker + Simulator
+  mqtt-broker:
+    image: eclipse-mosquitto:2.0
+    container_name: mqtt-broker
+    networks:
+      ics-lab:
+        ipv4_address: 172.20.0.13
+    ports: []
+    volumes:
+      - ../simulators/mqtt_sim/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+
+  # HMI Dashboard
+  hmi-dashboard:
+    build: ../hmi
+    container_name: hmi-dashboard
+    networks:
+      ics-lab:
+        ipv4_address: 172.20.0.14
+    ports: []
+    depends_on:
+      - modbus-plc-1
+      - modbus-plc-2
+
+  # Monitoring Stack
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    networks:
+      ics-lab:
+        ipv4_address: 172.20.0.15
+    ports: []
+    volumes:
+      - ../infra/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prom_data:/prometheus
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    networks:
+      ics-lab:
+        ipv4_address: 172.20.0.16
+    ports: []
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=lab_admin_123
+    volumes:
+      - ../infra/grafana/dashboards:/var/lib/grafana/dashboards
+    depends_on:
+      - prometheus
+
+  # Attacker Container (Isolated)
+  attacker:
+    build: ../attacks
+    container_name: attacker
+    networks:
+      ics-lab:
+        ipv4_address: 172.20.0.100
+    ports: []
+    tty: true
+    stdin_open: true
+    environment:
+      - LAB_MODE=1
+
+volumes:
+  prom_data:
