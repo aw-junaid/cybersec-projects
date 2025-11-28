@@ -1,0 +1,9 @@
+name: "PLC_Simulator_1"
+port: 5020
+metrics_port: 8080
+safe_ranges:
+  holding_registers:
+    0: [0, 100]    # Temperature - safe range 0-100
+    1: [0, 500]    # Pressure - safe range 0-500
+    2: [0, 1000]   # Flow rate - safe range 0-1000
+read_only_registers: [3, 4, 5]  # Diagnostic registers
