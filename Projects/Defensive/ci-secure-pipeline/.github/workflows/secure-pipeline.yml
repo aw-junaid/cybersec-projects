@@ -1,0 +1,189 @@
+name: Secure CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [ published ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write  # Required for keyless signing
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Log in to Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build and scan image
+      run: |
+        chmod +x ./scripts/build_and_scan.sh
+        ./scripts/build_and_scan.sh "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
+
+    - name: Run unit tests
+      run: |
+        python -m pytest tests/ -v
+
+    - name: Upload scan results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: security-scan-results
+        path: scan-results/
+        retention-days: 30
+
+  security-scan:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: security-scan-results
+        path: scan-results/
+
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@0.19.0
+      with:
+        image-ref: '${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+        severity: 'HIGH,CRITICAL'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v3
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
+
+    - name: Check scan results against policy
+      run: |
+        if [ -f "scan-results/trivy-scan.json" ]; then
+          critical_count=$(jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "CRITICAL")] | length' scan-results/trivy-scan.json)
+          if [ "$critical_count" -gt 0 ]; then
+            echo "❌ Policy violation: $critical_count CRITICAL vulnerabilities found"
+            exit 1
+          fi
+          echo "✅ No critical vulnerabilities found"
+        else
+          echo "⚠️ No scan results found"
+        fi
+
+  sign-and-attest:
+    runs-on: ubuntu-latest
+    needs: [build-and-test, security-scan]
+    if: github.event_name == 'push' || github.event_name == 'release'
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Sign container image (Keyless)
+      uses: sigstore/cosign-installer@v3
+      continue-on-error: false
+
+    - name: Sign the image with cosign (Keyless)
+      run: |
+        cosign sign --yes \
+          ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+    - name: Generate SBOM
+      run: |
+        cosign attest --yes \
+          --predicate scan-results/sbom.json \
+          --type spdx \
+          ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+    - name: Attest vulnerability scan
+      run: |
+        cosign attest --yes \
+          --predicate scan-results/trivy-scan.json \
+          --type vuln \
+          ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+  deploy-verification:
+    runs-on: ubuntu-latest
+    needs: sign-and-attest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install cosign
+      uses: sigstore/cosign-installer@v3
+
+    - name: Build C verifier
+      run: |
+        cd c-tools
+        make
+        cd ..
+
+    - name: Verify image and attestations
+      run: |
+        IMAGE_REF="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
+        
+        # Verify signature
+        cosign verify $IMAGE_REF
+        
+        # Verify attestations
+        cosign verify-attestation --type vuln $IMAGE_REF
+        cosign verify-attestation --type spdx $IMAGE_REF
+        
+        # Run custom policy verification
+        ./c-tools/verifier $IMAGE_REF
+
+    - name: Deploy to production
+      if: success()
+      run: |
+        echo "🚀 Deploying ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} to production"
+        # Add your actual deployment commands here
+        # kubectl set image deployment/my-app app=$IMAGE_REF
+
+  policy-check:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download OPA
+      run: |
+        curl -L -o opa https://openpolicyagent.org/downloads/v0.58.0/opa_linux_amd64_static
+        chmod +x opa
+
+    - name: Evaluate policy
+      run: |
+        ./opa eval --format pretty --data policy/gate.rego \
+          --input scan-results/trivy-scan.json \
+          "data.policy.allow"
