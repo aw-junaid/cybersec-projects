@@ -1,0 +1,44 @@
+{
+  "_type": "https://in-toto.io/Statement/v0.1",
+  "predicateType": "https://slsa.dev/provenance/v0.2",
+  "subject": [
+    {
+      "name": "ghcr.io/example/secure-ci-cd-app",
+      "digest": {
+        "sha256": "a1b2c3d4e5f678901234567890123456789012345678901234567890123456789"
+      }
+    }
+  ],
+  "predicate": {
+    "builder": {
+      "id": "https://github.com/actions/runner/github-hosted"
+    },
+    "buildType": "https://github.com/slsa-framework/slsa-github-buildpack/build@v1",
+    "invocation": {
+      "configSource": {
+        "uri": "git+https://github.com/example/ci-secure-pipeline@refs/heads/main",
+        "digest": {
+          "sha1": "abc123def456"
+        },
+        "entryPoint": ".github/workflows/secure-pipeline.yml"
+      }
+    },
+    "metadata": {
+      "buildInvocationID": "1234-5678-9012",
+      "completeness": {
+        "parameters": true,
+        "environment": false,
+        "materials": false
+      },
+      "reproducible": false
+    },
+    "materials": [
+      {
+        "uri": "git+https://github.com/example/ci-secure-pipeline",
+        "digest": {
+          "sha1": "abc123def456"
+        }
+      }
+    ]
+  }
+}
