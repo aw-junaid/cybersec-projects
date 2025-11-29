@@ -1,0 +1,120 @@
+stages:
+  - build
+  - test
+  - scan
+  - sign
+  - deploy
+
+variables:
+  IMAGE_NAME: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+  TRIVY_CACHE_DIR: ".trivycache"
+
+before_script:
+  - export TRIVY_VERSION=0.48.0
+  - wget https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz
+  - tar -xzf trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz
+  - chmod +x trivy
+  - export PATH=$PWD:$PATH
+
+build:
+  stage: build
+  image: docker:24.0
+  services:
+    - docker:24.0-dind
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+  before_script:
+    - apk add --no-cache bash jq
+    - chmod +x scripts/*.sh
+  script:
+    - docker build -t $IMAGE_NAME -f src/Dockerfile .
+    - docker push $IMAGE_NAME
+    - ./scripts/build_and_scan.sh $IMAGE_NAME
+  artifacts:
+    paths:
+      - scan-results/
+    expire_in: 1 week
+  only:
+    - main
+    - develop
+    - merge_requests
+
+container_scanning:
+  stage: scan
+  image: 
+    name: aquasec/trivy:0.48.0
+    entrypoint: [""]
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - trivy image --exit-code 1 --severity HIGH,CRITICAL $IMAGE_NAME
+    - trivy image --format template --template "@contrib/sarif.tpl" --output gl-container-scanning-report.sarif $IMAGE_NAME
+  dependencies:
+    - build
+  artifacts:
+    reports:
+      container_scanning: gl-container-scanning-report.sarif
+  allow_failure: false
+  only:
+    - main
+    - develop
+    - merge_requests
+
+sign-image:
+  stage: sign
+  image: alpine:3.18
+  before_script:
+    - apk add --no-cache cosign bash
+    - chmod +x scripts/*.sh
+  script:
+    - ./scripts/sign_with_cosign.sh $IMAGE_NAME
+  dependencies:
+    - build
+  needs: ["build"]
+  only:
+    - main
+    - tags
+
+deploy-verification:
+  stage: deploy
+  image: alpine:3.18
+  before_script:
+    - apk add --no-cache cosign bash jansson-dev build-base
+    - cd c-tools && make && cd ..
+  script:
+    - |
+      echo "Verifying image signatures and attestations..."
+      cosign verify $IMAGE_NAME
+      cosign verify-attestation --type vuln $IMAGE_NAME
+      ./c-tools/verifier $IMAGE_NAME
+    - echo "🚀 Deployment verification passed - proceeding with deployment"
+    - |
+      # Add actual deployment commands here
+      echo "Deploying $IMAGE_NAME to production"
+  dependencies:
+    - build
+    - sign-image
+  needs: ["build", "sign-image"]
+  only:
+    - main
+  when: manual
+  allow_failure: false
+
+policy-check:
+  stage: test
+  image: openpolicyagent/opa:0.58.0
+  script:
+    - |
+      opa eval --format pretty \
+        --data policy/gate.rego \
+        --input scan-results/trivy-scan.json \
+        "data.policy.allow"
+  dependencies:
+    - build
+  artifacts:
+    paths:
+      - scan-results/
+  only:
+    - main
+    - develop
+    - merge_requests
