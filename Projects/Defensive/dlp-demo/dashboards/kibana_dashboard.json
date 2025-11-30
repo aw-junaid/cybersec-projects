@@ -1,0 +1,12 @@
+{
+  "title": "DLP Demo Dashboard",
+  "description": "Data Leak Prevention Monitoring - Lab Use Only",
+  "hits": 0,
+  "panelsJSON": "[{\"version\":\"7.14.0\",\"type\":\"metric\",\"gridData\":{\"x\":0,\"y\":0,\"w\":12,\"h\":6},\"panelIndex\":1,\"embeddableConfig\":{\"layerId\":\"metric_layer\",\"title\":\"High Risk Alerts (Last 24h)\",\"metric\":{\"color\":\"#F4664A\",\"metricFontSize\":\"48\",\"labelFontSize\":\"14\",\"value\":\"count()\"},\"dimensions\":{\"metrics\":[{\"accessor\":0,\"format\":{\"id\":\"number\"},\"params\":{}}]}}},{\"version\":\"7.14.0\",\"type\":\"pie\",\"gridData\":{\"x\":12,\"y\":0,\"w\":12,\"h\":6},\"panelIndex\":2,\"embeddableConfig\":{\"layerId\":\"pie_layer\",\"title\":\"Exfiltration Methods\",\"shape\":\"pie\",\"layers\":[{\"layerId\":\"pie_layer\",\"groupBy\":\"protocol\",\"metric\":\"count\"}]}},{\"version\":\"7.14.0\",\"type\":\"line\",\"gridData\":{\"x\":0,\"y\":6,\"w\":24,\"h\":8},\"panelIndex\":3,\"embeddableConfig\":{\"layerId\":\"timeline_layer\",\"title\":\"Alerts Timeline\",\"xAxis\":\"timestamp\",\"yAxis\":\"risk_score\",\"series\":[{\"accessor\":\"risk_score\",\"color\":\"#F4664A\",\"name\":\"Risk Score\"}]}},{\"version\":\"7.14.0\",\"type\":\"bar\",\"gridData\":{\"x\":0,\"y\":14,\"w\":12,\"h\":8},\"panelIndex\":4,\"embeddableConfig\":{\"layerId\":\"bar_layer\",\"title\":\"Top Source IPs\",\"xAxis\":\"source.ip\",\"yAxis\":\"count\",\"series\":[{\"accessor\":\"count\",\"color\":\"#54B399\"}]}},{\"version\":\"7.14.0\",\"type\":\"table\",\"gridData\":{\"x\":12,\"y\":14,\"w\":12,\"h\":8},\"panelIndex\":5,\"embeddableConfig\":{\"layerId\":\"table_layer\",\"title\":\"Recent High-Risk Alerts\",\"columns\":[\"timestamp\",\"source.ip\",\"destination.host\",\"protocol\",\"risk_score\",\"rule_id\"]}}]",
+  "optionsJSON": "{\"useMargins\":true}",
+  "version": 1,
+  "timeRestore": false,
+  "kibanaSavedObjectMeta": {
+    "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filter\":[]}"
+  }
+}
