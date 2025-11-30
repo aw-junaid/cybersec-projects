@@ -128,3 +128,4 @@
 - [Microservices security checklist & tests — secure interservice comms.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/microservices-security)
 - [SCADA/ICS security study lab — emulate industrial protocols safely.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/ics-security-lab)
 - [Secure CI/CD pipeline examples — signing, scanning, gating.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/ci-secure-pipeline)
+- [Data leak prevention demo — detect exfiltration patterns.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/dlp-demo)
