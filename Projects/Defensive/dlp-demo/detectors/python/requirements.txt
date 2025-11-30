@@ -1,0 +1,12 @@
+requests==2.31.0
+pyshark==0.4.6
+scapy==2.4.5
+yara-python==4.2.3
+elasticsearch==8.9.0
+prometheus-client==0.17.1
+scikit-learn==1.3.0
+pandas==2.0.3
+numpy==1.24.3
+pytest==7.4.0
+python-magic==0.4.27
+geoip2==4.6.0
