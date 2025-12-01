@@ -1,0 +1,55 @@
+name: Honeynet CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  HONEY_LAB_MODE: 1
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    services:
+      zookeeper:
+        image: confluentinc/cp-zookeeper:7.3.0
+        env:
+          ZOOKEEPER_CLIENT_PORT: 2181
+          
+      kafka:
+        image: confluentinc/cp-kafka:7.3.0
+        env:
+          KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+        ports:
+          - 9092:9092
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        pip install -r collector/agent/requirements.txt
+        pip install pytest pytest-asyncio
+        
+    - name: Run unit tests
+      run: |
+        python -m pytest tests/ -v
+        
+    - name: Build containers
+      run: |
+        docker build -t honeynet-agent ./collector/agent
+        docker build -t honeynet-ingest ./collector/ingest_service
+        
+    - name: Security scan
+      run: |
+        # Add security scanning tools here
+        echo "Security scans would run here"
