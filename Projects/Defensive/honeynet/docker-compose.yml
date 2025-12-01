@@ -1,0 +1,109 @@
+version: '3.8'
+
+# Safety notice
+x-safety: &safety
+  HONEY_LAB_MODE: "1"
+  NETWORK_ISOLATED: "true"
+
+services:
+  # Message Broker
+  kafka:
+    image: confluentinc/cp-kafka:7.3.0
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    networks:
+      - honeynet-backend
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.3.0
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+
+  # Data Storage
+  elasticsearch:
+    image: elasticsearch:8.6.0
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+    networks:
+      - honeynet-backend
+
+  # Object Storage
+  minio:
+    image: minio/minio:latest
+    environment:
+      MINIO_ROOT_USER: honeynet
+      MINIO_ROOT_PASSWORD: change-this-password
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    networks:
+      - honeynet-backend
+
+  # Data Processing
+  logstash:
+    image: logstash:8.6.0
+    volumes:
+      - ./collector/logstash/pipeline:/usr/share/logstash/pipeline
+      - ./infra/certs:/certs
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    depends_on:
+      - elasticsearch
+      - kafka
+    networks:
+      - honeynet-backend
+
+  # Ingest Service
+  ingest-service:
+    build: ./collector/ingest_service
+    environment:
+      <<: *safety
+      KAFKA_BROKERS: "kafka:9092"
+      ELASTICSEARCH_HOST: "elasticsearch:9200"
+      MINIO_ENDPOINT: "minio:9000"
+      MINIO_ACCESS_KEY: "honeynet"
+      MINIO_SECRET_KEY: "change-this-password"
+    volumes:
+      - ./infra/certs:/certs
+    depends_on:
+      - kafka
+      - elasticsearch
+      - minio
+    networks:
+      - honeynet-backend
+
+  # Dashboard
+  kibana:
+    image: kibana:8.6.0
+    environment:
+      ELASTICSEARCH_HOSTS: '["http://elasticsearch:9200"]'
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - honeynet-backend
+
+volumes:
+  es_data:
+  minio_data:
+
+networks:
+  honeynet-backend:
+    driver: bridge
