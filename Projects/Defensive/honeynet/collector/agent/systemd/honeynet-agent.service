@@ -1,0 +1,29 @@
+[Unit]
+Description=Honeynet Sensor Agent
+After=network.target
+Requires=network.target
+
+[Service]
+Type=exec
+User=honeynet
+Group=honeynet
+Environment=HONEY_LAB_MODE=1
+Environment=NODE_TOKEN=changeme
+Environment=KAFKA_BROKERS=localhost:9092
+Environment=CA_CERT_PATH=/etc/honeynet/certs/ca.crt
+Environment=NODE_CERT_PATH=/etc/honeynet/certs/node.crt  
+Environment=NODE_KEY_PATH=/etc/honeynet/certs/node.key
+WorkingDirectory=/opt/honeynet/agent
+ExecStart=/usr/bin/python3 app.py
+Restart=on-failure
+RestartSec=5
+
+# Security
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/honeynet/artifacts
+
+[Install]
+WantedBy=multi-user.target
