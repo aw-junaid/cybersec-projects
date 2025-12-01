@@ -1,0 +1,34 @@
+{
+  "dashboard": {
+    "title": "Honeynet Overview",
+    "panels": [
+      {
+        "title": "Attack Sources by Country",
+        "type": "geomap",
+        "targets": [
+          {
+            "expr": "topk(10, count by (source_ip) (honeynet_events{geoip_country!=\"\"}))"
+          }
+        ]
+      },
+      {
+        "title": "Events by Type",
+        "type": "barchart", 
+        "targets": [
+          {
+            "expr": "count by (event_type) (honeynet_events)"
+          }
+        ]
+      },
+      {
+        "title": "Top Attacker IPs",
+        "type": "table",
+        "targets": [
+          {
+            "expr": "topk(10, count by (source_ip) (honeynet_events))"
+          }
+        ]
+      }
+    ]
+  }
+}
