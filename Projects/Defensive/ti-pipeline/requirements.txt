@@ -1,0 +1,17 @@
+fastapi==0.104.1
+uvicorn==0.24.0
+asyncpg==0.29.0
+redis==5.0.1
+aiohttp==3.9.1
+python-multipart==0.0.6
+pydantic==2.5.0
+prometheus-client==0.19.0
+minio==7.1.17
+celery==5.3.4
+python-dotenv==1.0.0
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+black==23.11.0
+flake8==6.1.0
+mypy==1.7.1
