@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Threat Intelligence Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            text-align: center;
+            opacity: 0.9;
+        }
+
+        .search-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .search-btn {
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .search-btn:hover {
+            background: #5a6fd8;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid #e1e5e9;
+            border-radius: 4px;
+            background: white;
+        }
+
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .results-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .results-header {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e1e5e9;
+            display: flex;
+            justify-content: between;
+            align-items: center;
+        }
+
+        .results-count {
+            font-weight: 600;
+            color: #666;
+        }
+
+        .ioc-list {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .ioc-item {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e1e5e9;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .ioc-item:hover {
+            background: #f8f9fa;
+        }
+
+        .ioc-item:last-child {
+            border-bottom: none;
+        }
+
+        .ioc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.5rem;
+        }
+
+        .ioc-value {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .ioc-type {
+            background: #667eea;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .ioc-meta {
+            display: flex;
+            gap: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ioc-confidence {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .confidence-high {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .confidence-medium {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .confidence-low {
+            background: #d1fae5;
+            color: #059669;
+        }
+
+        .ioc-description {
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .enrichment-details {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+            display: none;
+        }
+
+        .enrichment-source {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .enrichment-data {
+            font-family: monospace;
+            background: white;
+            padding: 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #dc2626;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .search-form {
+                flex-direction: column;
+            }
+            
+            .filters {
+                flex-direction: column;
+            }
+            
+            .ioc-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Threat Intelligence Dashboard</h1>
+            <p>Monitor and analyze security indicators with enriched context</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="search-section">
+            <form class="search-form" id="searchForm">
+                <input type="text" class="search-input" id="searchInput" 
+                       placeholder="Search IOCs (IP, domain, hash, URL)...">
+                <button type="submit" class="search-btn">Search</button>
+            </form>
+            <div class="filters">
+                <select class="filter-select" id="typeFilter">
+                    <option value="">All Types</option>
+                    <option value="ipv4">IPv4</option>
+                    <option value="ipv6">IPv6</option>
+                    <option value="domain">Domain</option>
+                    <option value="url">URL</option>
+                    <option value="md5">MD5</option>
+                    <option value="sha1">SHA1</option>
+                    <option value="sha256">SHA256</option>
+                </select>
+                <select class="filter-select" id="sourceFilter">
+                    <option value="">All Sources</option>
+                </select>
+                <select class="filter-select" id="confidenceFilter">
+                    <option value="">Any Confidence</option>
+                    <option value="high">High (76-100)</option>
+                    <option value="medium">Medium (26-75)</option>
+                    <option value="low">Low (0-25)</option>
+                </select>
+            </div>
+        </section>
+
+        <div class="stats-cards">
+            <div class="stat-card">
+                <div class="stat-number" id="totalIocs">0</div>
+                <div class="stat-label">Total IOCs</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="maliciousIocs">0</div>
+                <div class="stat-label">Malicious</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="enrichments">0</div>
+                <div class="stat-label">Enrichments</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="sources">0</div>
+                <div class="stat-label">Data Sources</div>
+            </div>
+        </div>
+
+        <section class="results-section">
+            <div class="results-header">
+                <div class="results-count" id="resultsCount">No results</div>
+            </div>
+            <div class="ioc-list" id="iocList">
+                <div class="loading">Enter a search term to find IOCs</div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8000';
+        const API_KEY = 'test-key';
+
+        // DOM elements
+        const searchForm = document.getElementById('searchForm');
+        const searchInput = document.getElementById('searchInput');
+        const iocList = document.getElementById('iocList');
+        const resultsCount = document.getElementById('resultsCount');
+        const totalIocs = document.getElementById('totalIocs');
+        const maliciousIocs = document.getElementById('maliciousIocs');
+        const enrichments = document.getElementById('enrichments');
+        const sources = document.getElementById('sources');
+
+        // Load stats on page load
+        document.addEventListener('DOMContentLoaded', loadStats);
+
+        // Search form handler
+        searchForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const query = searchInput.value.trim();
+            if (query) {
+                await searchIocs(query);
+            }
+        });
+
+        async function loadStats() {
+            try {
+                const response = await fetch(`${API_BASE}/stats`, {
+                    headers: {
+                        'Authorization': `Bearer ${API_KEY}`
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    updateStats(data);
+                }
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        function updateStats(statsData) {
+            const iocStats = statsData.ioc_statistics;
+            const enrichStats = statsData.enrichment_statistics;
+
+            totalIocs.textContent = iocStats?.total_iocs || '0';
+            maliciousIocs.textContent = 'N/A'; // Would need malicious count
+            enrichments.textContent = enrichStats?.total_enrichments || '0';
+            sources.textContent = iocStats?.unique_sources || '0';
+        }
+
+        async function searchIocs(query) {
+            showLoading();
+            
+            const typeFilter = document.getElementById('typeFilter').value;
+            const sourceFilter = document.getElementById('sourceFilter').value;
+            
+            try {
+                let url = `${API_BASE}/search?q=${encodeURIComponent(query)}`;
+                if (typeFilter) url += `&type=${typeFilter}`;
+                if (sourceFilter) url += `&source=${sourceFilter}`;
+
+                const response = await fetch(url, {
+                    headers: {
+                        'Authorization': `Bearer ${API_KEY}`
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    displayResults(data);
+                } else {
+                    showError('Search failed: ' + response.statusText);
+                }
+            } catch (error) {
+                showError('Search error: ' + error.message);
+            }
+        }
+
+        function displayResults(data) {
+            const iocs = data.iocs;
+            
+            resultsCount.textContent = `Found ${data.total} IOCs (showing ${iocs.length})`;
+            
+            if (iocs.length === 0) {
+                iocList.innerHTML = '<div class="loading">No IOCs found matching your search</div>';
+                return;
+            }
+
+            iocList.innerHTML = iocs.map(ioc => `
+                <div class="ioc-item" onclick="toggleEnrichment('${ioc.id}')">
+                    <div class="ioc-header">
+                        <div class="ioc-value">${escapeHtml(ioc.value)}</div>
+                        <div class="ioc-type">${ioc.type.toUpperCase()}</div>
+                    </div>
+                    <div class="ioc-meta">
+                        <span>Source: ${escapeHtml(ioc.source)}</span>
+                        <span>First seen: ${formatDate(ioc.first_seen)}</span>
+                        <span>Last seen: ${formatDate(ioc.last_seen)}</span>
+                    </div>
+                    ${ioc.confidence ? `
+                        <div class="ioc-confidence ${getConfidenceClass(ioc.confidence)}">
+                            Confidence: ${ioc.confidence}%
+                        </div>
+                    ` : ''}
+                    ${ioc.description ? `
+                        <div class="ioc-description">${escapeHtml(ioc.description)}</div>
+                    ` : ''}
+                    <div class="enrichment-details" id="enrichment-${ioc.id}">
+                        <div class="loading">Loading enrichment data...</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function toggleEnrichment(iocId) {
+            const enrichmentDiv = document.getElementById(`enrichment-${iocId}`);
+            
+            if (enrichmentDiv.style.display === 'block') {
+                enrichmentDiv.style.display = 'none';
+                return;
+            }
+
+            enrichmentDiv.style.display = 'block';
+            
+            // Load enrichment data if not already loaded
+            if (enrichmentDiv.innerHTML.includes('Loading')) {
+                try {
+                    const response = await fetch(`${API_BASE}/ioc/${iocId}`, {
+                        headers: {
+                            'Authorization': `Bearer ${API_KEY}`
+                        }
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        displayEnrichmentData(enrichmentDiv, data);
+                    } else {
+                        enrichmentDiv.innerHTML = '<div class="error">Failed to load enrichment data</div>';
+                    }
+                } catch (error) {
+                    enrichmentDiv.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+                }
+            }
+        }
+
+        function displayEnrichmentData(container, iocData) {
+            const enrichments = iocData.enrichments;
+            
+            if (!enrichments || enrichments.length === 0) {
+                container.innerHTML = '<div class="loading">No enrichment data available</div>';
+                return;
+            }
+
+            container.innerHTML = enrichments.map(enrich => `
+                <div class="enrichment-source">
+                    ${enrich.source.toUpperCase()} 
+                    <small>(${formatDate(enrich.timestamp)})</small>
+                    ${enrich.confidence ? ` - Confidence: ${enrich.confidence}%` : ''}
+                </div>
+                <div class="enrichment-data">${escapeHtml(JSON.stringify(enrich.normalized_data, null, 2))}</div>
+            `).join('');
+        }
+
+        function showLoading() {
+            iocList.innerHTML = '<div class="loading">Searching...</div>';
+        }
+
+        function showError(message) {
+            iocList.innerHTML = `<div class="error">${escapeHtml(message)}</div>`;
+        }
+
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleDateString();
+        }
+
+        function getConfidenceClass(confidence) {
+            if (confidence >= 76) return 'confidence-high';
+            if (confidence >= 26) return 'confidence-medium';
+            return 'confidence-low';
+        }
+
+        function escapeHtml(unsafe) {
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>
