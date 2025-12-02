@@ -130,3 +130,4 @@
 - [Secure CI/CD pipeline examples — signing, scanning, gating.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/ci-secure-pipeline)
 - [Data leak prevention demo — detect exfiltration patterns.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/dlp-demo)
 - [Honeynet — distributed honeypots with centralized logging.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/honeynet)
+- [Threat intel collection & enrichment pipeline — enrich IOCs.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/ti-pipeline)
