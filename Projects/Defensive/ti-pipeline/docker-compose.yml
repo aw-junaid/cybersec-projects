@@ -1,0 +1,96 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: threat_intel
+      POSTGRES_USER: ti_user
+      POSTGRES_PASSWORD: ti_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infra/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ti_user -d threat_intel"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://ti_user:ti_password@postgres:5432/threat_intel
+      - REDIS_URL=redis://redis:6379/0
+      - API_KEY=${API_KEY:-test-key}
+      - MOCK_ENRICH=${MOCK_ENRICH:-true}
+      - ENABLE_REAL_ENRICH=${ENABLE_REAL_ENRICH:-false}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./api:/app/api
+      - ./cache:/app/cache
+      - ./storage:/app/storage
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    environment:
+      - DATABASE_URL=postgresql://ti_user:ti_password@postgres:5432/threat_intel
+      - REDIS_URL=redis://redis:6379/0
+      - MOCK_ENRICH=${MOCK_ENRICH:-true}
+      - ENABLE_REAL_ENRICH=${ENABLE_REAL_ENRICH:-false}
+      - VT_API_KEY=${VT_API_KEY:-}
+      - SHODAN_API_KEY=${SHODAN_API_KEY:-}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./workers:/app/workers
+      - ./cache:/app/cache
+      - ./storage:/app/storage
+
+  minio:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+volumes:
+  postgres_data:
+  redis_data:
+  minio_data:
