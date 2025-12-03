@@ -1,0 +1,66 @@
+rules:
+  high_entropy_surge:
+    enabled: true
+    threshold: 10
+    time_window: 60
+    severity: HIGH
+    description: "Multiple high entropy files created in short time period"
+    mitigation: "Isolate process and quarantine files"
+  
+  rapid_file_operations:
+    enabled: true  
+    threshold: 100
+    time_window: 10
+    severity: MEDIUM
+    description: "Rapid file modifications suggesting encryption activity"
+    mitigation: "Block process and alert immediately"
+  
+  suspicious_process_chain:
+    enabled: true
+    patterns:
+      - "powershell.*-enc"
+      - "certutil.*-decode"
+      - "bitsadmin.*/transfer"
+      - "vssadmin.*delete"
+      - "wscript.*.vbs"
+      - "mshta.*javascript"
+    severity: HIGH
+    description: "Suspicious process execution patterns"
+    mitigation: "Terminate process and investigate parent"
+  
+  honeyfile_modification:
+    enabled: true
+    severity: CRITICAL
+    description: "Honeyfile modification or deletion detected"
+    mitigation: "Immediate isolation and incident response"
+  
+  shadow_copy_deletion:
+    enabled: true
+    commands:
+      - "vssadmin delete shadows"
+      - "wbadmin delete catalog"
+      - "bcdedit.*recoveryenabled.no"
+    severity: CRITICAL
+    description: "Shadow copy deletion attempt detected"
+    mitigation: "Block command and backup immediately"
+  
+  file_extension_encryption:
+    enabled: true
+    patterns:
+      - "\.txt$ -> \.encrypted$"
+      - "\.docx?$ -> \.locked$"
+      - "\.pdf$ -> \.crypted$"
+      - "\.jpg$ -> \.encrypt$"
+    severity: HIGH
+    description: "File extension changes suggesting encryption"
+    mitigation: "Quarantine process and affected files"
+  
+  network_ransomware_beacons:
+    enabled: false  # Requires network monitoring
+    domains:
+      - "tor2web.org"
+      - "onion.cab"
+      - "ransomware.*.com"
+    severity: MEDIUM
+    description: "Communication with known ransomware C2 servers"
+    mitigation: "Block domain and investigate"
