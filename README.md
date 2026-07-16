@@ -9,6 +9,7 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/aw-junaid/cybersec-projects)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fawjunaid.com%2F)
 ![GitHub repo size](https://img.shields.io/github/repo-size/aw-junaid/cybersec-projects)
+![Category](https://img.shields.io/badge/Category-Cybersecurity-blue) ![Type](https://img.shields.io/badge/Type-Lab%20%2F%20Learning-informational) ![Status](https://img.shields.io/badge/Status-Reference-lightgrey)
 > Hands-on cybersecurity projects built for learning, experimentation, and practical security research — featuring offensive and defensive tools, automation scripts, and real-world simulations for ethical hacking practice.
 # Contact With Me:
 
@@ -41,94 +42,187 @@
   
 ---
 
-# Table of Content
+## 📑 Table of Contents
 
-## Offensive Projects
-- [Basic honeypot — set up to catch and log attackers.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Basic%20honeypo)
-- [Simple password cracker — dictionary/brute-force for learning](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Simple%20password%20cracker)
-- [Sniff network traffic tool — capture and analyze packets.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Sniff%20network%20traffic)
-- [Basic keylogger (lab-only) — learn keystroke capture mechanics.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Basic%20keylogger)
-- [Phishing campaign simulator — create a safe training simulation.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Phishing%20campaign%20simulator)
-- [Wi-Fi security tester — evaluate home Wi-Fi weaknesses.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Wi-Fi%20security%20tester)
-- [Network vulnerability scanner — scan for open ports/services.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Network%20vulnerability%20scanner)
-- [Password cracking with GPUs — accelerate cracking using GPU.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Password%20cracking%20with%20GPUs)
-- [Browser extension for security testing — inject/scan pages.](https://github.com/aw-junaid/cybersecprojects/tree/main/Projects/Offensive/Browser%20extension%20for%20security%20testing)
-- [Subdomain enumeration tool — brute-force and DNS discovery.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Subdomain%20enumeration%20tool)
-- [Directory brute-force tool — automated wordlist-based discovery.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Directory%20brute-force%20tool)
-- [XSS finder — detect reflected/stored cross-site scripting.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/XSS%20finder)
-- [SQLi tester — detect and exploit injection vectors safely.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/SQLi%20tester)
-- [CSRF checker — detect cross-site request forgery points.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/CSRF%20checker)
-- [Reverse shell framework — generate/listen to shells in lab.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Reverse%20shell%20framework)
-- [Exploit Template Library — Reusable Exploit Skeletons.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Exploit%20template%20library)
-- [Shell upload tool — upload payloads to target test hosts.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Shell%20upload%20tool)
-- [Simple ransomware simulator — behavior analysis in sandbox.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Simple%20ransomware%20simulator)
-- [Malware obfuscation practice — test packing/obfuscation techniques.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Malware%20obfuscation%20practice)
-- [Rootkit practice (sandbox) — create & remove benign rootkits.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Rootkit%20practice)
-- [Kernel backdoor detector/creator (lab) — study kernel persistence.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Kernel%20backdoor)
-- [Steganography encoder/decoder — hide data in images/audio.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Steganography%20encoder)
-- [DNS spoofing simulator — practice detection/attack methods.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/DNS%20spoofing%20simulator)
-- [ARP spoof/mitm tool (lab) — learn MITM traffic interception.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/ARP%20spoof-mitm%20tool)
-- [Packet injection tool — craft & send custom packets.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Packet%20injection%20tool)
-- [Create custom payloads — modular payload generator.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Create%20custom%20payloads)
-- [Firmware reverse-engineering — find flaws in embedded firmware.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Firmware%20reverse-engineering)
-- [IoT device fuzzing tool — fuzz protocols for IoT devices.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/IoT%20device%20fuzzing%20tool)
-- [Bluetooth protocol tester — scan/exploit Bluetooth services.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Bluetooth%20Protocol%20Tester)
-- [Mobile app vulnerability scanner — static/dynamic tests for apps.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Mobile%20app%20vulnerability%20scanner)
-- [Web app crawler + vuln correlator — find attack paths.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Web%20app%20crawler%20+%20vuln%20correlator)
-- [Automated vulnerability scanner integration — orchestrate multiple scanners.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Automated%20vulnerability%20scanner%20integration)
-- [Social engineering toolkit — email/SMS template simulator for testing.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Social%20engineering%20toolkit)
-- [Dark web scraper (research) — aggregate threat intel data.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Dark%20web%20scraper)
-- [USB implant simulator — emulate malicious USB behaviors in lab.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/USB%20implant%20simulator)
-- [Binary reverse-engineering exercises — unpack and analyze binaries.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Binary%20reverse-engineering)
-- [Password spraying automation — test credential reuse patterns.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Password%20spraying%20automation)
-- [Credential dump analyzer — parse and make sense of leaks.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Credential%20dump%20analyzer)
-- [Side-channel attack experiments — timing/power analysis study.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Side-channel%20attack)
-- [TLS downgrade & MITM tester — examine TLS weaknesses.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/TLS%20downgrade)
-- [Smart contract audit tools (offensive POV) — detect vulnerabilities.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Smart%20contract%20audit)
-- [Blockchain pentest harness — test contract functions and flows.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Blockchain%20pentest%20harness)
-- [Hardware fault injection lab — observe failure-mode vulnerabilities.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Hardware%20fault%20injection%20lab)
-- [Cloud misconfiguration exploit scripts — target insecure cloud setups.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Cloud%20misconfiguration%20exploit)
-- [API abuse/fuzzing tool — test REST/GraphQL abuse cases.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/API%20abuse)
-- [Web sockets pentest tool — test real-time channels for issues.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Web%20sockets%20pentest%20tool)
-- [CSRF exploit demo kit — craft chained CSRF attacks for training.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/CSRF%20exploit%20demo%20kit)
-- [Automate phishing page builder — fast lab-only templates.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Automate%20phishing%20page%20builder)
-- [ROP chain builder helper — create return-oriented payloads.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/ROP%20chain%20builder%20helper)
-- [Binary instrumentation toolkit — hook and manipulate processes.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Binary%20instrumentation%20toolkit)
-- [Vulnerability PoC repository — catalog proof-of-concepts.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Vulnerability%20PoC%20repository)
-- [Network pivoting lab scripts — simulate lateral movement.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Network%20pivoting%20lab)
-- [Log evasion simulator — study evasion techniques in safe env.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Log%20evasion%20simulator)
-- [Exploit chaining workflow — automate multi-step exploit sequences.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Exploit%20chaining%20workflow)
-- [Password manager attack simulations — test vault export/weaknesses.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Password%20manager%20attack)
-- [IDS/IPS bypass tests — craft payloads to evade detection.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/IDS)
-- [Wireless protocol fuzzing — test Zigbee/LoRa/802.11 frames.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Wireless%20protocol%20fuzzing)
-- [C2 (command & control) mini framework — lab C2 functionality.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/C2)
-- [Obfuscation & packer research toolkit — study packer effects.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Obfuscation)
-- [Red/Blue exercise scenarios generator — create realistic engagements.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Red)
+- [⚔️ Offensive Security Projects](#️-offensive-security-projects)
+  - [Reconnaissance & Enumeration](#reconnaissance--enumeration)
+  - [Web Application Security](#web-application-security)
+  - [Network & Wireless Attacks](#network--wireless-attacks)
+  - [Exploitation & Post-Exploitation](#exploitation--post-exploitation)
+  - [Malware & Evasion Research](#malware--evasion-research)
+  - [Hardware, IoT & Firmware](#hardware-iot--firmware)
+  - [Social Engineering & OSINT](#social-engineering--osint)
+  - [Blockchain & Cloud](#blockchain--cloud)
+- [🛡️ Defensive Security Projects](#️-defensive-security-projects)
+  - [Monitoring & Detection](#monitoring--detection)
+  - [Forensics & Incident Response](#forensics--incident-response)
+  - [Hardening & Secure Architecture](#hardening--secure-architecture)
+  - [Cloud, Container & Pipeline Security](#cloud-container--pipeline-security)
+  - [Threat Intelligence & Deception](#threat-intelligence--deception)
 
-# Defensive Projects
-- [Digital forensic analysis lab — capture & analyze forensic artifacts.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Digital%20forensic%20analysis%20lab)
-- [Basic malware analysis sandbox — run and observe malware safely.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Basic%20malware%20analysis)
-- [TLS setup & hardening guide — secure communication configs.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/TLS%20setup)
-- [Two-factor authentication demo implementation — test flows & bypasses.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Two-factor%20authentication)
-- [Snort/Suricata IDS setup — basic intrusion detection deployment.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Snort)
-- [Configure firewall rule automation — templates & testing scripts.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Configure%20firewall)
-- [Host-based monitoring scripts — file/integrity/process watchers.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Host-based%20monitoring)
-- [Forensic timeline builder — correlate artifacts into timelines.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Forensic%20timeline%20builder)
-- [Malware behavior analyzer — behavioral IOC extractor.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Malware%20behavior%20analyzer)
-- [Full-disk encryption demo & key management — best practices.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Full-disk%20encryption)
-- [Rootkit detection & removal toolkit — heuristics and scanners.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Rootkit%20detection)
-- [Secure web application template — hardened starter app](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/secure-webapp)
-- [Secure API authentication examples — JWT/OAuth best practices.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/secure-api-auth)
-- [SIEM dashboard for logs — ingest and visualize security events.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/siem-dashboard)
-- [Threat detection using ML — anomaly detection prototype.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/ml-threat-detection)
-- [Log aggregation & parser tools — normalize and search logs.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/log-aggregator)
-- [Vulnerability management dashboard — track findings lifecycle.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Vulnerability%20management%20dashboard)
-- [Cloud security posture tool — detect misconfigs and risky perms.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/cloud-cspm)
-- [Container security hardening scripts — scan and enforce images.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/container-security-suite)
-- [Microservices security checklist & tests — secure interservice comms.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/microservices-security)
-- [SCADA/ICS security study lab — emulate industrial protocols safely.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/ics-security-lab)
-- [Secure CI/CD pipeline examples — signing, scanning, gating.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/ci-secure-pipeline)
-- [Data leak prevention demo — detect exfiltration patterns.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/dlp-demo)
-- [Honeynet — distributed honeypots with centralized logging.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/honeynet)
-- [Threat intel collection & enrichment pipeline — enrich IOCs.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/ti-pipeline)
-- [Ransomware detection playbook — detect/prevent encryption activity.](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/ransomwatch)
+---
+
+## ⚔️ Offensive Security Projects
+
+### Reconnaissance & Enumeration
+
+| Project | Description |
+|---|---|
+| [Subdomain Enumeration Tool](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Subdomain%20enumeration%20tool) | Brute-force and DNS-based subdomain discovery |
+| [Directory Brute-Force Tool](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Directory%20brute-force%20tool) | Automated wordlist-based directory discovery |
+| [Network Vulnerability Scanner](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Network%20vulnerability%20scanner) | Scans for open ports and exposed services |
+| [Sniff Network Traffic Tool](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Sniff%20network%20traffic) | Captures and analyzes network packets |
+| [Web App Crawler + Vuln Correlator](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Web%20app%20crawler%20+%20vuln%20correlator) | Crawls applications and correlates attack paths |
+| [Automated Vulnerability Scanner Integration](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Automated%20vulnerability%20scanner%20integration) | Orchestrates multiple scanning tools |
+
+### Web Application Security
+
+| Project | Description |
+|---|---|
+| [XSS Finder](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/XSS%20finder) | Detects reflected and stored cross-site scripting |
+| [SQLi Tester](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/SQLi%20tester) | Detects and safely tests injection vectors |
+| [CSRF Checker](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/CSRF%20checker) | Identifies cross-site request forgery points |
+| [CSRF Exploit Demo Kit](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/CSRF%20exploit%20demo%20kit) | Chained CSRF attack demonstrations for training |
+| [Web Sockets Pentest Tool](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Web%20sockets%20pentest%20tool) | Tests real-time communication channels for flaws |
+| [API Abuse & Fuzzing Tool](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/API%20abuse) | Tests REST/GraphQL endpoints for abuse cases |
+| [Mobile App Vulnerability Scanner](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Mobile%20app%20vulnerability%20scanner) | Static and dynamic mobile app testing |
+
+### Network & Wireless Attacks
+
+| Project | Description |
+|---|---|
+| [Wi-Fi Security Tester](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Wi-Fi%20security%20tester) | Evaluates home Wi-Fi network weaknesses |
+| [DNS Spoofing Simulator](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/DNS%20spoofing%20simulator) | Practices detection and attack methods |
+| [ARP Spoof / MITM Tool (Lab)](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/ARP%20spoof-mitm%20tool) | Explores man-in-the-middle traffic interception |
+| [Packet Injection Tool](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Packet%20injection%20tool) | Crafts and sends custom network packets |
+| [TLS Downgrade & MITM Tester](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/TLS%20downgrade) | Examines TLS configuration weaknesses |
+| [Wireless Protocol Fuzzing](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Wireless%20protocol%20fuzzing) | Tests Zigbee, LoRa, and 802.11 frame handling |
+| [Network Pivoting Lab Scripts](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Network%20pivoting%20lab) | Simulates lateral movement across networks |
+
+### Exploitation & Post-Exploitation
+
+| Project | Description |
+|---|---|
+| [Reverse Shell Framework](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Reverse%20shell%20framework) | Generates and manages shells in a lab environment |
+| [Exploit Template Library](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Exploit%20template%20library) | Reusable exploit skeletons |
+| [Shell Upload Tool](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Shell%20upload%20tool) | Uploads payloads to target test hosts |
+| [Create Custom Payloads](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Create%20custom%20payloads) | Modular payload generator |
+| [ROP Chain Builder Helper](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/ROP%20chain%20builder%20helper) | Builds return-oriented programming payloads |
+| [Binary Instrumentation Toolkit](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Binary%20instrumentation%20toolkit) | Hooks and manipulates running processes |
+| [Vulnerability PoC Repository](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Vulnerability%20PoC%20repository) | Catalog of proof-of-concept exploits |
+| [Exploit Chaining Workflow](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Exploit%20chaining%20workflow) | Automates multi-step exploit sequences |
+| [Password Cracking with GPUs](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Password%20cracking%20with%20GPUs) | GPU-accelerated password cracking |
+| [Password Spraying Automation](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Password%20spraying%20automation) | Tests credential reuse patterns |
+| [Credential Dump Analyzer](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Credential%20dump%20analyzer) | Parses and analyzes leaked credential sets |
+| [Simple Password Cracker](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Simple%20password%20cracker) | Dictionary/brute-force cracker for learning |
+| [Password Manager Attack Simulations](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Password%20manager%20attack) | Tests vault export and weaknesses |
+| [Side-Channel Attack Experiments](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Side-channel%20attack) | Timing and power analysis study |
+
+### Malware & Evasion Research
+
+| Project | Description |
+|---|---|
+| [Basic Keylogger (Lab-Only)](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Basic%20keylogger) | Learn keystroke capture mechanics |
+| [Simple Ransomware Simulator](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Simple%20ransomware%20simulator) | Sandbox-based behavior analysis |
+| [Malware Obfuscation Practice](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Malware%20obfuscation%20practice) | Tests packing and obfuscation techniques |
+| [Rootkit Practice (Sandbox)](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Rootkit%20practice) | Create and remove benign rootkits |
+| [Kernel Backdoor Detector/Creator (Lab)](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Kernel%20backdoor) | Studies kernel-level persistence techniques |
+| [Steganography Encoder/Decoder](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Steganography%20encoder) | Hides data within images and audio |
+| [Binary Reverse-Engineering Exercises](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Binary%20reverse-engineering) | Unpacks and analyzes binaries |
+| [Firmware Reverse-Engineering](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Firmware%20reverse-engineering) | Finds flaws in embedded firmware |
+| [Log Evasion Simulator](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Log%20evasion%20simulator) | Studies evasion techniques in a safe environment |
+| [IDS/IPS Bypass Tests](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/IDS) | Crafts payloads to evade detection systems |
+| [Obfuscation & Packer Research Toolkit](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Obfuscation) | Studies the effects of packers |
+| [C2 Mini Framework](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/C2) | Lab-based command & control functionality |
+
+### Hardware, IoT & Firmware
+
+| Project | Description |
+|---|---|
+| [IoT Device Fuzzing Tool](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/IoT%20device%20fuzzing%20tool) | Fuzzes protocols used by IoT devices |
+| [Bluetooth Protocol Tester](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Bluetooth%20Protocol%20Tester) | Scans and tests Bluetooth services |
+| [USB Implant Simulator](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/USB%20implant%20simulator) | Emulates malicious USB behaviors in a lab |
+| [Hardware Fault Injection Lab](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Hardware%20fault%20injection%20lab) | Observes failure-mode vulnerabilities |
+
+### Social Engineering & OSINT
+
+| Project | Description |
+|---|---|
+| [Phishing Campaign Simulator](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Phishing%20campaign%20simulator) | Creates safe phishing training simulations |
+| [Automate Phishing Page Builder](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Automate%20phishing%20page%20builder) | Fast, lab-only phishing page templates |
+| [Social Engineering Toolkit](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Social%20engineering%20toolkit) | Email/SMS template simulator for training |
+| [Dark Web Scraper (Research)](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Dark%20web%20scraper) | Aggregates threat intelligence data |
+| [Browser Extension for Security Testing](https://github.com/aw-junaid/cybersecprojects/tree/main/Projects/Offensive/Browser%20extension%20for%20security%20testing) | Injects and scans pages for testing |
+
+### Blockchain & Cloud
+
+| Project | Description |
+|---|---|
+| [Smart Contract Audit Tools (Offensive POV)](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Smart%20contract%20audit) | Detects vulnerabilities in smart contracts |
+| [Blockchain Pentest Harness](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Blockchain%20pentest%20harness) | Tests contract functions and flows |
+| [Cloud Misconfiguration Exploit Scripts](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Cloud%20misconfiguration%20exploit) | Targets insecure cloud configurations |
+| [Basic Honeypot](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Basic%20honeypo) | Set up to catch and log attackers |
+| [Red / Blue Exercise Scenarios Generator](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Offensive/Red) | Creates realistic red/blue team engagements |
+
+---
+
+## 🛡️ Defensive Security Projects
+
+### Monitoring & Detection
+
+| Project | Description |
+|---|---|
+| [Snort/Suricata IDS Setup](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Snort) | Basic intrusion detection deployment |
+| [Host-Based Monitoring Scripts](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Host-based%20monitoring) | File integrity and process watchers |
+| [SIEM Dashboard for Logs](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/siem-dashboard) | Ingests and visualizes security events |
+| [Threat Detection Using ML](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/ml-threat-detection) | Anomaly detection prototype |
+| [Log Aggregation & Parser Tools](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/log-aggregator) | Normalizes and searches log data |
+| [Vulnerability Management Dashboard](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Vulnerability%20management%20dashboard) | Tracks the lifecycle of security findings |
+| [Rootkit Detection & Removal Toolkit](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Rootkit%20detection) | Heuristic-based rootkit scanning |
+
+### Forensics & Incident Response
+
+| Project | Description |
+|---|---|
+| [Digital Forensic Analysis Lab](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Digital%20forensic%20analysis%20lab) | Captures and analyzes forensic artifacts |
+| [Basic Malware Analysis Sandbox](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Basic%20malware%20analysis) | Safely runs and observes malware samples |
+| [Forensic Timeline Builder](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Forensic%20timeline%20builder) | Correlates artifacts into event timelines |
+| [Malware Behavior Analyzer](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Malware%20behavior%20analyzer) | Extracts behavioral indicators of compromise |
+
+### Hardening & Secure Architecture
+
+| Project | Description |
+|---|---|
+| [TLS Setup & Hardening Guide](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/TLS%20setup) | Secure communication configuration guide |
+| [Two-Factor Authentication Demo](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Two-factor%20authentication) | Demonstrates 2FA flows and bypass testing |
+| [Configure Firewall Rule Automation](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Configure%20firewall) | Templates and testing scripts for firewall rules |
+| [Full-Disk Encryption Demo & Key Management](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/Full-disk%20encryption) | Best practices for disk encryption |
+| [Secure Web Application Template](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/secure-webapp) | Hardened starter application |
+| [Secure API Authentication Examples](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/secure-api-auth) | JWT/OAuth best-practice implementations |
+| [Microservices Security Checklist & Tests](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/microservices-security) | Secures inter-service communications |
+
+### Cloud, Container & Pipeline Security
+
+| Project | Description |
+|---|---|
+| [Cloud Security Posture Tool](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/cloud-cspm) | Detects misconfigurations and risky permissions |
+| [Container Security Hardening Scripts](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/container-security-suite) | Scans and enforces container image standards |
+| [Secure CI/CD Pipeline Examples](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/ci-secure-pipeline) | Signing, scanning, and gating practices |
+| [SCADA/ICS Security Study Lab](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/ics-security-lab) | Emulates industrial protocols safely |
+| [Data Leak Prevention Demo](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/dlp-demo) | Detects data exfiltration patterns |
+
+### Threat Intelligence & Deception
+
+| Project | Description |
+|---|---|
+| [Honeynet](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/honeynet) | Distributed honeypots with centralized logging |
+| [Threat Intel Collection & Enrichment Pipeline](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/ti-pipeline) | Enriches indicators of compromise (IOCs) |
+| [Ransomware Detection Playbook](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/ransomwatch) | Detects and prevents encryption activity |
+
+---
+
+<div align="center">
+
+*All offensive projects are intended for authorized, lab, or educational use only.*
+
+</div>
