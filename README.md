@@ -10,7 +10,9 @@
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fawjunaid.com%2F)
 ![GitHub repo size](https://img.shields.io/github/repo-size/aw-junaid/cybersec-projects)
 ![Category](https://img.shields.io/badge/Category-Cybersecurity-blue) ![Type](https://img.shields.io/badge/Type-Lab%20%2F%20Learning-informational) ![Status](https://img.shields.io/badge/Status-Reference-lightgrey)
+
 > Hands-on cybersecurity projects built for learning, experimentation, and practical security research — featuring offensive and defensive tools, automation scripts, and real-world simulations for ethical hacking practice.
+
 # Contact With Me:
 
 
@@ -38,9 +40,11 @@
 
 
   # 💰 You can help me by Donating
-  [![BuyMeACoffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/awjunaid) 
-  
----
+[![BuyMeACoffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/awjunaid)
+[![The SQL Injection Handbook](https://img.shields.io/badge/The%20SQL%20Injection%20Handbook-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://buymeacoffee.com/awjunaid/e/565571)
+[![Kali Linux Unleashed](https://img.shields.io/badge/Kali%20Linux%20Unleashed-9B59B6?style=for-the-badge&logo=kalilinux&logoColor=white)](https://buymeacoffee.com/awjunaid/e/558655)
+[![359 Python Automation Scripts](https://img.shields.io/badge/359%20Python%20Automation%20Scripts-3776AB?style=for-the-badge&logo=python&logoColor=FFD43B)](https://buymeacoffee.com/awjunaid/e/558147)
+
 
 ## 📑 Table of Contents
 
@@ -60,7 +64,6 @@
   - [Cloud, Container & Pipeline Security](#cloud-container--pipeline-security)
   - [Threat Intelligence & Deception](#threat-intelligence--deception)
 
----
 
 ## ⚔️ Offensive Security Projects
 
@@ -219,7 +222,6 @@
 | [Threat Intel Collection & Enrichment Pipeline](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/ti-pipeline) | Enriches indicators of compromise (IOCs) |
 | [Ransomware Detection Playbook](https://github.com/aw-junaid/cybersec-projects/tree/main/Projects/Defensive/ransomwatch) | Detects and prevents encryption activity |
 
----
 
 <div align="center">
 
