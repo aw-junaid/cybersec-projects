@@ -153,8 +153,13 @@ int main(int argc, char **argv) {
     }
 
     printf("[+] Capturing on %s BPF='%s' (press Ctrl+C to stop)\n", dev, filter_exp ? filter_exp : "");
-    if (count > 0) pcap_loop(handle, count, pkt_handler, NULL);
-    else pcap_loop(handle, -1, pkt_handler, NULL);
+    while(keep_running && 
+        (count <= 0 || total_pkts < (unsigned long) count)) 
+    {
+        int rc = pcap_dispatch(handle, -1, pkt_handler, NULL);
+        if (rc == PCAP_ERROR) 
+            break;
+    }
 
     if (dumper) pcap_dump_close(dumper);
     pcap_close(handle);
